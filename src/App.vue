@@ -1,10 +1,7 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import avatarUrl from './assets/SalHe.png';
-import { NH2, NH5, NP, NEmpty, NAvatar, NConfigProvider, NSpace, NLayout, NLayoutSider, NLayoutContent, NIcon, useOsTheme, darkTheme } from 'naive-ui';
+import { NEmpty, NConfigProvider, NSpace, NLayout, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
 import { computed } from '@vue/reactivity';
-import { LogoGithub, Location, Heart } from "@vicons/ionicons5";
+import SiderProfile from './components/SiderProfile.vue';
 
 const osThemeRef = useOsTheme();
 const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
@@ -22,33 +19,7 @@ const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
       </n-layout-content>
       <n-layout-sider show-trigger="bar" bordered :collapsed-width="0">
         <n-space vertical justify="center" align="center" style="height: 100%;">
-          <n-space vertical>
-            <n-avatar round :size="180" :src="avatarUrl"></n-avatar>
-            <n-h2 style="margin: 0;">SalHe Li</n-h2>
-            <n-h5 style="margin: 0;">SalHe</n-h5>
-            <n-p style="margin: 0;">I wanna be free.</n-p>
-            <a href="https://github.com/SalHe" target="_blank">
-              <n-space :size="5">
-                <n-icon size="medium">
-                  <LogoGithub />
-                </n-icon>Github
-              </n-space>
-            </a>
-            <a href="https://salhe.github.io/SalHeLetty">
-              <n-space :size="5">
-                <n-icon size="medium">
-                  <Heart />
-                </n-icon>SalHe & Letty
-              </n-space>
-            </a>
-            <a href="https://www.china.com/">
-              <n-space :size="5">
-                <n-icon size="medium">
-                  <Location />
-                </n-icon>China
-              </n-space>
-            </a>
-          </n-space>
+          <sider-profile></sider-profile>
         </n-space>
       </n-layout-sider>
     </n-layout>
