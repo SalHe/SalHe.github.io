@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { NH1, NText, NA, NAvatar, NThing, NConfigProvider, NSpace, NLayout, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
-import { computed } from '@vue/reactivity';
+import { NConfigProvider, NSpace, NLayout, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
+import { computed, ref } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
 import PersonProfile from './components/PersonProfile.vue';
+import { watchEffect } from '@vue/runtime-core';
 
-const osThemeRef = useOsTheme();
-const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
+const localTheme = localStorage.getItem("theme") || useOsTheme().value || 'dark';
+const myTheme = ref(localTheme);
+const theme = computed(() => myTheme.value === 'dark' ? darkTheme : null);
+
+watchEffect(() => localStorage.setItem("theme", myTheme.value));
 
 </script>
 
@@ -19,7 +23,7 @@ const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
       </n-layout-content>
       <n-layout-sider show-trigger="bar" bordered :collapsed-width="0" default-collapsed>
         <n-space vertical justify="center" align="center" style="height: 100%;">
-          <sider-profile></sider-profile>
+          <sider-profile v-model:theme="myTheme"></sider-profile>
         </n-space>
       </n-layout-sider>
     </n-layout>

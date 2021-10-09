@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { NH2, NH5, NP, NAvatar, NSpace, NIcon } from 'naive-ui';
-import type { Component } from 'vue';
-import { Ref } from '@vue/reactivity';
-import { ref } from 'vue';
+import { NH2, NH5, NP, NAvatar, NSpace, NIcon, NSwitch } from 'naive-ui';
 import { LogoGithub, Heart, Location } from '@vicons/ionicons5';
 import { profile } from "../person";
 
-const links: Ref<{
-    link: string,
-    title: string,
-    icon: Component,
-    newWindow: boolean
-}[]> = ref([
+defineProps<{ theme: string }>();
+defineEmits(["update:theme"]);
+
+const links = [
     {
         link: "https://github.com/SalHe",
         title: "Github",
@@ -30,7 +25,7 @@ const links: Ref<{
         icon: Heart,
         newWindow: false
     },
-]);
+];
 </script>
 
 <template>
@@ -47,5 +42,14 @@ const links: Ref<{
                 {{ link.title }}
             </n-space>
         </a>
+        <n-switch
+            checked-value="dark"
+            unchecked-value="light"
+            :default-value="theme"
+            @update:value="v => $emit('update:theme', v)"
+        >
+            <template #checked>🌙Dark</template>
+            <template #unchecked>🌞Light</template>
+        </n-switch>
     </n-space>
 </template>
