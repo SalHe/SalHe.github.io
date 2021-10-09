@@ -22,28 +22,32 @@ const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
       </n-layout-content>
       <n-layout-sider show-trigger="bar" bordered :collapsed-width="0">
         <n-space vertical justify="center" align="center" style="height: 100%;">
-          <n-avatar round :size="160" :src="avatarUrl"></n-avatar>
-          <n-h2 style="margin: 0;">SalHe Li</n-h2>
-          <n-h5 style="margin: 0;">SalHe</n-h5>
-          <n-p style="margin: 0;">I wanna be free.</n-p>
-          <a href="https://github.com/SalHe" target="_blank">
-            <n-space :size="5" justify="center">
-              <n-icon size="medium">
-                <LogoGithub />
-              </n-icon>Github
-            </n-space>
-          </a>
-          <a href="https://salhe.github.io/SalHeLetty">
-            <n-space :size="5" justify="center">
-              <n-icon size="medium">
-                <Heart />
-              </n-icon>SalHe & Letty
-            </n-space>
-          </a>
-          <n-space :size="5" justify="center">
-            <n-icon size="medium">
-              <Location />
-            </n-icon>China
+          <n-space vertical>
+            <n-avatar round :size="180" :src="avatarUrl"></n-avatar>
+            <n-h2 style="margin: 0;">SalHe Li</n-h2>
+            <n-h5 style="margin: 0;">SalHe</n-h5>
+            <n-p style="margin: 0;">I wanna be free.</n-p>
+            <a href="https://github.com/SalHe" target="_blank">
+              <n-space :size="5">
+                <n-icon size="medium">
+                  <LogoGithub />
+                </n-icon>Github
+              </n-space>
+            </a>
+            <a href="https://salhe.github.io/SalHeLetty">
+              <n-space :size="5">
+                <n-icon size="medium">
+                  <Heart />
+                </n-icon>SalHe & Letty
+              </n-space>
+            </a>
+            <a href="https://www.china.com/">
+              <n-space :size="5">
+                <n-icon size="medium">
+                  <Location />
+                </n-icon>China
+              </n-space>
+            </a>
           </n-space>
         </n-space>
       </n-layout-sider>
