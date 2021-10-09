@@ -8,5 +8,12 @@ export const profile = {
     major: "Computer Science",
     school: "Wuhan University",
     email: "SalHe@qq.com",
+    programming: {
+        languages: ["C#", "C/C++", "Java", "Kotlin", "Javascript", "Typescript", "Golang", "Python"],
+        platforms: ["Android", "Nodejs", ".NET", "JVM"],
+        frameworks: ["Vue", "Spring+", "Jetpack Compose"],
+        ides: ["Visual Studio Code", "IDEA", "Visual Studio"],
+        systems: ["Windows", "Linux (Ubuntu)"]
+    },
     avatarUrl
 };

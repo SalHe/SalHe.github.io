@@ -5,7 +5,7 @@ import firstAvatarWithU from "../assets/loveu.jpg";
 </script>
 
 <template>
-    <n-thing style="max-width: 600px;">
+    <n-thing>
         <template #avatar>
             <n-avatar :size="168" :src="firstAvatarWithU"></n-avatar>
         </template>
