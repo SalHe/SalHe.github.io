@@ -4,7 +4,7 @@
 import avatarUrl from './assets/SalHe.png';
 import { NH2, NH5, NP, NEmpty, NAvatar, NConfigProvider, NSpace, NLayout, NLayoutSider, NLayoutContent, NIcon, useOsTheme, darkTheme } from 'naive-ui';
 import { computed } from '@vue/reactivity';
-import { LogoGithub, Location } from "@vicons/ionicons5";
+import { LogoGithub, Location, Heart } from "@vicons/ionicons5";
 
 const osThemeRef = useOsTheme();
 const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
@@ -31,6 +31,13 @@ const theme = computed(() => osThemeRef.value === 'dark' ? darkTheme : null);
               <n-icon size="medium">
                 <LogoGithub />
               </n-icon>Github
+            </n-space>
+          </a>
+          <a href="https://salhe.github.io/SalHeLetty">
+            <n-space :size="5" justify="center">
+              <n-icon size="medium">
+                <Heart />
+              </n-icon>SalHe & Letty
             </n-space>
           </a>
           <n-space :size="5" justify="center">
