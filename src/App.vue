@@ -5,12 +5,14 @@ import SiderProfile from './components/SiderProfile.vue';
 import { watchEffect } from '@vue/runtime-core';
 import { profile } from "./person";
 
-const localTheme = localStorage.getItem("theme") || useOsTheme().value || 'dark';
-const myTheme = ref(localTheme);
-const theme = computed(() => myTheme.value === 'dark' ? darkTheme : null);
-const screenWidth = window.window.screen.availWidth;
+const themeMode = ref(localStorage.getItem("theme") || useOsTheme().value || 'dark');
+const theme = computed(() => themeMode.value === 'dark' ? darkTheme : null);
 
-watchEffect(() => localStorage.setItem("theme", myTheme.value));
+const siderCollapsedLocal = localStorage.getItem("siderCollapsed");
+const siderCollapsed = ref(siderCollapsedLocal != null ? siderCollapsedLocal === "true" : window.window.screen.availWidth <= 360);
+
+watchEffect(() => localStorage.setItem("theme", themeMode.value));
+watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.toString()));
 
 </script>
 
@@ -34,8 +36,8 @@ watchEffect(() => localStorage.setItem("theme", myTheme.value));
           <n-switch
             checked-value="dark"
             unchecked-value="light"
-            :default-value="myTheme"
-            @update:value="v => myTheme = v"
+            :default-value="themeMode"
+            @update:value="v => themeMode = v"
           >
             <template #checked>🌙Dark</template>
             <template #unchecked>🌞Light</template>
@@ -47,8 +49,9 @@ watchEffect(() => localStorage.setItem("theme", myTheme.value));
           show-trigger="bar"
           bordered
           :collapsed-width="0"
-          :default-collapsed="screenWidth <= 360"
+          :default-collapsed="siderCollapsed"
           :native-scrollbar="false"
+          @update:collapsed="v => siderCollapsed = v"
           content-style="height: 100%"
         >
           <n-space vertical justify="center" align="center" style="height: 100%;">
