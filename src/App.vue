@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NAvatar, NText, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
+import { NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
 import { computed, ref } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
 import { watchEffect } from '@vue/runtime-core';
@@ -18,7 +18,7 @@ watchEffect(() => localStorage.setItem("theme", myTheme.value));
   <n-config-provider :theme="theme">
     <n-layout position="absolute">
       <n-layout-header position="absolute" style="height: 70px; padding: 20px;" bordered>
-        <n-space>
+        <n-space justify="space-between">
           <a href="/">
             <n-space
               justify="center"
@@ -31,6 +31,15 @@ watchEffect(() => localStorage.setItem("theme", myTheme.value));
               <n-text type="info" strong>SalHe's Home</n-text>
             </n-space>
           </a>
+          <n-switch
+            checked-value="dark"
+            unchecked-value="light"
+            :default-value="myTheme"
+            @update:value="v => myTheme = v"
+          >
+            <template #checked>🌙Dark</template>
+            <template #unchecked>🌞Light</template>
+          </n-switch>
         </n-space>
       </n-layout-header>
       <n-layout position="absolute" style="top: 70px;" has-sider>
@@ -43,7 +52,7 @@ watchEffect(() => localStorage.setItem("theme", myTheme.value));
           content-style="height: 100%"
         >
           <n-space vertical justify="center" align="center" style="height: 100%;">
-            <sider-profile v-model:theme="myTheme"></sider-profile>
+            <sider-profile></sider-profile>
           </n-space>
         </n-layout-sider>
         <n-layout-content :native-scrollbar="false">

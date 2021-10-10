@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { NH2, NH5, NP, NAvatar, NSpace, NIcon, NSwitch } from 'naive-ui';
+import { NH2, NH5, NP, NAvatar, NSpace, NIcon } from 'naive-ui';
 import { LogoGithub, Heart, Location } from '@vicons/ionicons5';
 import { profile } from "../person";
-
-defineProps<{ theme: string }>();
-defineEmits(["update:theme"]);
 
 const links = [
     {
@@ -42,14 +39,5 @@ const links = [
                 {{ link.title }}
             </n-space>
         </a>
-        <n-switch
-            checked-value="dark"
-            unchecked-value="light"
-            :default-value="theme"
-            @update:value="v => $emit('update:theme', v)"
-        >
-            <template #checked>🌙Dark</template>
-            <template #unchecked>🌞Light</template>
-        </n-switch>
     </n-space>
 </template>
