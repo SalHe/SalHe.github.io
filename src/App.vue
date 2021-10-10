@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme } from 'naive-ui';
+<script setup lang="tsx">
+import { NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
 import { computed, ref } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
 import { watchEffect } from '@vue/runtime-core';
@@ -14,6 +14,29 @@ const siderCollapsed = ref(siderCollapsedLocal != null ? siderCollapsedLocal ===
 watchEffect(() => localStorage.setItem("theme", themeMode.value));
 watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.toString()));
 
+const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
+  {
+    label: () => (
+      <router-link to="/">
+        <NSpace
+          justify="center"
+          align="center"
+          style="margin: 0;"
+          item-style="display: flex; align-items: center;"
+          size={5}
+        >
+          <NAvatar src={profile.avatarUrl} round size={20}></NAvatar>
+          <NText type="info" strong>SalHe's Home</NText>
+        </NSpace>
+      </router-link>),
+    key: "home"
+  },
+  {
+    label: () => (<router-link to="blog" >Blog</router-link>),
+    key: "blog"
+  }
+];
+
 </script>
 
 <template>
@@ -21,7 +44,8 @@ watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.to
     <n-layout position="absolute">
       <n-layout-header position="absolute" style="height: 70px; padding: 20px;" bordered>
         <n-space justify="space-between">
-          <a href="/">
+          <!-- Logo -->
+          <!-- <router-link to="/">
             <n-space
               justify="center"
               align="center"
@@ -32,7 +56,10 @@ watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.to
               <n-avatar :src="profile.avatarUrl" round :size="20"></n-avatar>
               <n-text type="info" strong>SalHe's Home</n-text>
             </n-space>
-          </a>
+          </router-link>-->
+          <!-- Menus -->
+          <n-menu mode="horizontal" :options="navMenuOptions"></n-menu>
+          <!-- Theme switcher -->
           <n-switch
             checked-value="dark"
             unchecked-value="light"
@@ -44,7 +71,8 @@ watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.to
           </n-switch>
         </n-space>
       </n-layout-header>
-      <n-layout position="absolute" style="top: 70px;" has-sider>
+      <!-- the height of main area equals screen's height minus 70px for header. -->
+      <n-layout position="absolute" style="top: 70px; height: calc(100vh - 70px);" has-sider>
         <n-layout-sider
           show-trigger="bar"
           bordered
@@ -58,8 +86,13 @@ watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.to
             <sider-profile></sider-profile>
           </n-space>
         </n-layout-sider>
-        <n-layout-content :native-scrollbar="false">
-          <n-space vertical style="padding: 20px 5vw;">
+        <!-- I hope main content fill height of reset at least. -->
+        <n-layout-content :native-scrollbar="false" content-style="height: 100%">
+          <n-space
+            vertical
+            style="padding: 20px 5vw; min-height: calc(100% - 40px);"
+            justify="center"
+          >
             <router-view></router-view>
           </n-space>
         </n-layout-content>
