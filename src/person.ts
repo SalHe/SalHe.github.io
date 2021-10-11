@@ -15,5 +15,11 @@ export const profile = {
         ides: ["Visual Studio Code", "IDEA", "Visual Studio"],
         systems: ["Windows", "Linux (Ubuntu)"]
     },
-    avatarUrl
+    avatarUrl,
+    blogRepository: {
+        owner: "SalHe",
+        repo: "_home"
+    }
 };
+
+export type Person = typeof profile;

@@ -1,6 +1,9 @@
+import { Octokit } from 'octokit';
 import { createApp } from 'vue'
 import { isNavigationFailure } from 'vue-router';
+import { Blog } from './api/blogs';
 import App from './App.vue'
+import { profile } from './person';
 import { router } from "./router";
 
 router.afterEach((to, from, failure) => {
@@ -11,4 +14,5 @@ router.afterEach((to, from, failure) => {
 
 createApp(App)
     .use(router)
+    .provide("blog", new Blog(new Octokit(), profile))
     .mount('#app')

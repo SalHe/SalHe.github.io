@@ -32,7 +32,7 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
     key: "home"
   },
   {
-    label: () => (<router-link to="blog" >Blog</router-link>),
+    label: () => (<router-link to="/blog" >Blog</router-link>),
     key: "blog"
   }
 ];
@@ -91,9 +91,14 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
           <n-space
             vertical
             style="padding: 20px 5vw; min-height: calc(100% - 40px);"
-            justify="center"
+            item-style="flex: 1; display: flex;"
           >
-            <router-view></router-view>
+            <!-- I hope n-space's unique child fill height. -->
+            <!-- And make its child `display: flex` to control alignment in router-view. -->
+            <!-- Otherwise, in default align router-view to center of content area. -->
+            <suspense>
+              <router-view></router-view>
+            </suspense>
           </n-space>
         </n-layout-content>
       </n-layout>
