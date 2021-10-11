@@ -6,11 +6,30 @@ import { LogoGithub } from "@vicons/ionicons5";
 import 'md-editor-v3/lib/style.css';
 import MDEditor from "md-editor-v3";
 import { Ref } from "vue";
+import { useRoute } from "vue-router";
 
 const blog = inject<Blog>("blog");
 const posts = await blog?.listPost();
 
 const themeMode = inject<Ref<"dark" | "light">>("themeMode");
+
+// Auto scroll to anchor (due to special reason, anchor can't work properly.)
+const route = useRoute();
+(async () => {
+  let count = 0;
+  const timer = setInterval(() => {
+    if (count >= 10 || route.hash === "") {
+      clearInterval(timer);
+      return;
+    }
+    count++;
+    const anchor = document.querySelector(route.hash);
+    if (anchor != null) {
+      anchor.scrollIntoView(true);
+      clearInterval(timer);
+    }
+  }, 500);
+})().then(() => { });
 </script>
 
 <template>
@@ -37,7 +56,13 @@ const themeMode = inject<Ref<"dark" | "light">>("themeMode");
         </a>
       </template>
       <template #default>
-        <m-d-editor :modelValue="post.body || ''" preview-only :theme="themeMode" language="en-US"></m-d-editor>
+        <m-d-editor
+          :modelValue="post.body || ''"
+          preview-only
+          :theme="themeMode"
+          language="en-US"
+          :editor-id="`post${post.number}`"
+        ></m-d-editor>
       </template>
       <template #footer>
         <n-space
