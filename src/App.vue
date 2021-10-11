@@ -2,11 +2,13 @@
 import { NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
 import { computed, ref } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
-import { watchEffect } from '@vue/runtime-core';
+import { provide, watchEffect } from '@vue/runtime-core';
 import { profile } from "./person";
 
 const themeMode = ref(localStorage.getItem("theme") || useOsTheme().value || 'dark');
 const theme = computed(() => themeMode.value === 'dark' ? darkTheme : null);
+
+provide("themeMode", themeMode);
 
 const siderCollapsedLocal = localStorage.getItem("siderCollapsed");
 const siderCollapsed = ref(siderCollapsedLocal != null ? siderCollapsedLocal === "true" : window.window.screen.availWidth <= 360);
@@ -105,3 +107,10 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
     </n-layout>
   </n-config-provider>
 </template>
+
+<style>
+.md,
+.md-dark {
+  background-color: transparent !important;
+}
+</style>

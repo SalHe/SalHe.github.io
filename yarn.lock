@@ -1486,6 +1486,11 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.4"
 
+md-editor-v3@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmmirror.com/md-editor-v3/download/md-editor-v3-1.5.0.tgz#7a56c27c2a097c928efd85ad168f2c60c999fbb5"
+  integrity sha1-elbCfCoJfJKO/YWtFo8sYMmZ+7U=
+
 minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.npm.taobao.org/minimist/download/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
