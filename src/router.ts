@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
 import Blog from "./views/Blog.vue";
 import Post from "./views/Post.vue";
@@ -7,7 +7,7 @@ import Post from "./views/Post.vue";
 // If using `createWebHashHistory`, markdown's heading's href will lead user to a wrong place.
 // If using `createWebHistory`, we can't access any link besides `index.html`
 export const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: [
         {
             path: "/",

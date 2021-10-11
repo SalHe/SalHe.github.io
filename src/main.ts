@@ -16,3 +16,9 @@ createApp(App)
     .use(router)
     .provide("blog", new Blog(new Octokit(), profile))
     .mount('#app')
+
+const redirect = sessionStorage.redirect;
+if (redirect != null && redirect != undefined) {
+    router.push(redirect);
+    sessionStorage.redirect = null;
+}
