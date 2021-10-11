@@ -37,7 +37,7 @@ const themeMode = inject<Ref<"dark" | "light">>("themeMode");
         </a>
       </template>
       <template #default>
-        <m-d-editor :modelValue="post.body || ''" preview-only :theme="themeMode"></m-d-editor>
+        <m-d-editor :modelValue="post.body || ''" preview-only :theme="themeMode" language="en-US"></m-d-editor>
       </template>
       <template #footer>
         <n-space
