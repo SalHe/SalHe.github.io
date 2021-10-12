@@ -11,7 +11,7 @@ export const profile = {
     programming: {
         languages: ["C#", "C/C++", "Java", "Kotlin", "Javascript", "Typescript", "Golang", "Python"],
         platforms: ["Android", "Nodejs", ".NET", "JVM"],
-        frameworks: ["Vue", "Spring+", "Jetpack Compose"],
+        frameworks: ["Vue", "Spring+", "Jetpack Compose", "Flutter"],
         ides: ["Visual Studio Code", "IDEA", "Visual Studio"],
         systems: ["Windows", "Linux (Ubuntu)"]
     },
