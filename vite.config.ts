@@ -4,8 +4,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import fs from "fs";
 
 function read(file: string, environment: string): string {
-  let content = fs.readFileSync(file);
-  return file ? content.toString() : process.env[environment];
+  return fs.existsSync(file) ? fs.readFileSync(file).toString() : process.env[environment];
 }
 
 // Auto fetch client id/secret from file(for development) or environment variables(for CI/CD).
