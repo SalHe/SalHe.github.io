@@ -1,23 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from "@vitejs/plugin-vue-jsx"
-import fs from "fs";
-
-function read(file: string, environment: string): string {
-  return fs.existsSync(file) ? fs.readFileSync(file).toString() : process.env[environment];
-}
-
-// Auto fetch client id/secret from file(for development) or environment variables(for CI/CD).
-const clientId = read("./github-client-id", "CLIENT_ID");
-const clientSecret = read("./github-client-secret", "CLIENT_SECRET");
-fs.writeFileSync(
-  "./src/github-client.ts",
-  "export default "
-  + JSON.stringify({
-    clientId,
-    clientSecret,
-    explain: "Please do not use this client id and secret out of here."
-  }));
+import "./github-config"
 
 // https://vitejs.dev/config/
 export default defineConfig({
