@@ -1,10 +1,12 @@
 import { Octokit } from 'octokit';
+import { createOAuthAppAuth } from "@octokit/auth-oauth-app";
 import { createApp } from 'vue'
 import { isNavigationFailure } from 'vue-router';
 import { Blog } from './api/blogs';
 import App from './App.vue'
 import { profile } from './person';
 import { router } from "./router";
+import GithubClientConfig from "./github-client";
 
 router.afterEach((to, from, failure) => {
     if (!isNavigationFailure(failure)) {
@@ -12,9 +14,14 @@ router.afterEach((to, from, failure) => {
     }
 });
 
+const octokit = new Octokit({
+    authStrategy: createOAuthAppAuth,
+    auth: GithubClientConfig
+});
+
 createApp(App)
     .use(router)
-    .provide("blog", new Blog(new Octokit(), profile))
+    .provide("blog", new Blog(octokit, profile))
     .mount('#app')
 
 const redirect = sessionStorage.redirect;
