@@ -1,7 +1,13 @@
 <script setup lang="ts">
 defineProps<{
-    issue_number: string
+  issue_number: string
 }>();
 </script>
 
-<template>POST {{ issue_number }}</template>
+<template>
+  <div>
+    <div>POST {{ issue_number }}</div>
+    <!-- TODO implement post's details page -->
+    <div>this page isn't implemented now!</div>
+  </div>
+</template>

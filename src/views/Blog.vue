@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { inject } from "@vue/runtime-core";
-import { NH1, NSpace, NEmpty, NIcon, NA, NAvatar, NCard, NTime } from "naive-ui";
+import { NH1, NSpace, NButton, NTooltip, NTag, NEmpty, NIcon, NA, NAvatar, NCard, NTime } from "naive-ui";
 import { Blog } from "../api/blogs";
-import { LogoGithub } from "@vicons/ionicons5";
+import { LogoGithub, ThumbsUpOutline, ChatboxOutline } from "@vicons/ionicons5";
 import 'md-editor-v3/lib/style.css';
 import MDEditor from "md-editor-v3";
 import { Ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const blog = inject<Blog>("blog");
 const posts = await blog?.listPost();
 
 const themeMode = inject<Ref<"dark" | "light">>("themeMode");
+
+const router = useRouter();
 
 // Auto scroll to anchor (due to special reason, anchor can't work properly.)
 const route = useRoute();
@@ -73,6 +75,27 @@ const route = useRoute();
             <n-avatar :src="post.user?.avatar_url" :size="20" round></n-avatar>
           </n-a>
           <n-time :time="new Date(post.created_at)"></n-time>
+          <n-tooltip v-for="label in post.labels" trigger="hover" :show-arrow="false">
+            <template #trigger>
+              <n-tag
+                :color="typeof label === 'string' ? undefined : { borderColor: `#${label.color}` || undefined, textColor: `#${label.color}` || undefined }"
+              >{{ typeof label == 'string' ? label : label.name }}</n-tag>
+            </template>
+            <span>{{ typeof label == 'string' ? label : label.description }}</span>
+          </n-tooltip>
+          <n-button text>
+            <!-- TODO implements LIKE -->
+            <n-icon>
+              <ThumbsUpOutline />
+            </n-icon>
+            <span style="margin-left: 5px;">{{ post.reactions?.['+1'] }}</span>
+          </n-button>
+          <n-button text @click="router.push(`/post/${post.number}`)">
+            <n-icon>
+              <ChatboxOutline />
+            </n-icon>
+            <span style="margin-left: 5px;">{{ post.reactions?.['+1'] }}</span>
+          </n-button>
         </n-space>
       </template>
     </n-card>
