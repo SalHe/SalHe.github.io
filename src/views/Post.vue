@@ -1,17 +1,24 @@
 <script setup lang="ts">
-import { inject, Ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { inject, Ref, watchEffect } from 'vue';
 import { Blog } from '../api/blogs';
 import PostContent from '../components/PostContent.vue';
 import { NEmpty } from "naive-ui";
+import { useRoute } from 'vue-router';
 
 const props = defineProps<{
-  issue_number: number
+  issueNumber: number
 }>();
 
 const blog = inject<Blog>("blog");
 const themeMode = inject<Ref<"dark" | "light">>("themeMode");
-const post = await blog?.getPostDetails(props.issue_number);
+const post = await blog?.getPostDetails(props.issueNumber);
+
+const route = useRoute();
+watchEffect(() => {
+  route.fullPath; // watch route
+  if (post?.title != null)
+    document.title = `${post.title} - ${document.title}`;
+});
 </script>
 
 <template>

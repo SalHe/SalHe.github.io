@@ -2,7 +2,7 @@
 import { inject } from "@vue/runtime-core";
 import { NSpace, NEmpty } from "naive-ui";
 import { Blog } from "../api/blogs";
-import { Ref } from "vue";
+import { Ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import PostContent from "../components/PostContent.vue";
 
@@ -11,23 +11,12 @@ const posts = await blog?.listPost();
 
 const themeMode = inject<Ref<"dark" | "light">>("themeMode");
 
-// Auto scroll to anchor (due to special reason, anchor can't work properly.)
 const route = useRoute();
-(async () => {
-  let count = 0;
-  const timer = setInterval(() => {
-    if (count >= 10 || route.hash === "") {
-      clearInterval(timer);
-      return;
-    }
-    count++;
-    const anchor = document.querySelector(route.hash);
-    if (anchor != null) {
-      anchor.scrollIntoView(true);
-      clearInterval(timer);
-    }
-  }, 500);
-})().then(() => { });
+watchEffect(() => {
+  if (route.hash !== "") {
+    document.querySelector(route.hash)?.scrollIntoView(true);
+  }
+});
 </script>
 
 <template>

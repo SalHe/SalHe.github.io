@@ -20,7 +20,7 @@ export const router = createRouter({
             path: "/post/:issue_number",
             component: Post,
             meta: { title: "Post" },
-            props: true
+            props: to => ({ issueNumber: Number.parseInt(to.params['issue_number'] as string) })
         },
         {
             path: "/:pathMatch(.*)*",
