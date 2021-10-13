@@ -28,7 +28,7 @@ jobs:
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-      run: yarn build
+      run: yarn build && cd dist && cp index.html 404.html
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
