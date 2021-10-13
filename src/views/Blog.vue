@@ -3,15 +3,13 @@ import { inject } from "@vue/runtime-core";
 import { NSpace, NEmpty } from "naive-ui";
 import { Blog } from "../api/blogs";
 import { Ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import PostContent from "../components/PostContent.vue";
 
 const blog = inject<Blog>("blog");
 const posts = await blog?.listPost();
 
 const themeMode = inject<Ref<"dark" | "light">>("themeMode");
-
-const router = useRouter();
 
 // Auto scroll to anchor (due to special reason, anchor can't work properly.)
 const route = useRoute();
