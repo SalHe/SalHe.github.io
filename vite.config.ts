@@ -9,10 +9,12 @@ export default defineConfig({
     vue(),
     vueJsx()
   ],
-  alias: [
-    // Node-fetch@2.6.5 offers many platform support for fetch, such as nodejs, browser.
-    // But it seems that vite can't pick a correct one implementation for browser.
-    // So I have to fix this problem by adding this code.
-    { find: "node-fetch", replacement: require.resolve("node-fetch/browser.js") }
-  ]
+  resolve: {
+    alias: [
+      // Node-fetch@2.6.5 offers many platform support for fetch, such as nodejs, browser.
+      // But it seems that vite can't pick a correct one implementation for browser.
+      // So I have to fix this problem by adding this code.
+      { find: "node-fetch", replacement: require.resolve("node-fetch/browser.js") }
+    ]
+  }
 })
