@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from "@vitejs/plugin-vue-jsx"
-import "./github-config"
+import configGithubClient from "./plugins/config-github-client"
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    vueJsx()
+    vueJsx(),
+    configGithubClient()
   ],
   resolve: {
     alias: [

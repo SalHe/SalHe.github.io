@@ -6,7 +6,7 @@ import { Blog } from './api/blogs';
 import App from './App.vue'
 import { profile } from './person';
 import { router } from "./router";
-import GithubClientConfig from "./github-client";
+import GithubClientConfig from "github-client";
 
 router.afterEach((to, from, failure) => {
     if (!isNavigationFailure(failure)) {

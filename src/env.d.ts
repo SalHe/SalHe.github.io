@@ -6,3 +6,12 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module "github-client" {
+  const GithubClientConfig: {
+    clientId: string;
+    clientSecret: string;
+    explain: string;
+  }
+  export default GithubClientConfig;
+}

@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "dev:host": "vite --host",
-    "build": "node github-config.js && vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
