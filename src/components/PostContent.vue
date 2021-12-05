@@ -18,12 +18,12 @@ const router = useRouter();
 <template>
   <n-card>
     <template #header>
-      <router-link :to="`/post/${post.number}`">
+      <router-link :to="`/post/${post.number}`" style="text-decoration: inherit; color: inherit;">
         <n-h1 prefix="bar" align-text>{{ post.title }}</n-h1>
       </router-link>
     </template>
     <template #header-extra>
-      <a :href="post.html_url" target="_blank">
+      <a :href="post.html_url" target="_blank" style="text-decoration: inherit; color: inherit;">
         <n-icon size="26">
           <LogoGithub />
         </n-icon>

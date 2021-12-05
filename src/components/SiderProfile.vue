@@ -31,7 +31,12 @@ const links = [
         <n-h2 style="margin: 0;">{{ profile.realName }}</n-h2>
         <n-h5 style="margin: 0;">{{ profile.nickName }}</n-h5>
         <n-p style="margin: 0;">{{ profile.slogan }}</n-p>
-        <a v-for="link of links" :href="link.link" :target="link.newWindow ? '_blank' : undefined">
+        <a
+            style="text-decoration: inherit; color: inherit;"
+            v-for="link of links"
+            :href="link.link"
+            :target="link.newWindow ? '_blank' : undefined"
+        >
             <n-space :size="5">
                 <n-icon size="medium">
                     <component :is="link.icon"></component>
