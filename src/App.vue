@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
+import { NA, NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
 import { computed, ref } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
 import { provide, watchEffect } from '@vue/runtime-core';
@@ -34,7 +34,7 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
     key: "home"
   },
   {
-    label: () => (<router-link to="/blog" >Blog</router-link>),
+    label: () => (<a href="https://salhe.github.io/blog">Blog</a>),
     key: "blog"
   }
 ];
