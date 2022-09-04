@@ -4,13 +4,14 @@ import { Blog } from '../api/blogs';
 import PostContent from '../components/PostContent.vue';
 import { NEmpty } from "naive-ui";
 import { useRoute } from 'vue-router';
+import { useThemeMode } from '../use';
 
 const props = defineProps<{
   issueNumber: number
 }>();
 
 const blog = inject<Blog>("blog");
-const themeMode = inject<Ref<"dark" | "light">>("themeMode");
+const themeMode = useThemeMode();
 const post = await blog?.getPostDetails(props.issueNumber);
 
 const route = useRoute();

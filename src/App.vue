@@ -1,20 +1,14 @@
 <script setup lang="tsx">
-import { NA, NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, useOsTheme, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
-import { computed, ref } from '@vue/reactivity';
+import { NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
+import { computed } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
-import { provide, watchEffect } from '@vue/runtime-core';
 import { profile } from "./person";
+import { useDark, useLocalStorage } from "@vueuse/core";
+import { watchEffect } from 'vue';
 
-const themeMode = ref(localStorage.getItem("theme") || useOsTheme().value || 'dark');
-const theme = computed(() => themeMode.value === 'dark' ? darkTheme : null);
-
-provide("themeMode", themeMode);
-
-const siderCollapsedLocal = localStorage.getItem("siderCollapsed");
-const siderCollapsed = ref(siderCollapsedLocal != null ? siderCollapsedLocal === "true" : window.window.screen.availWidth <= 360);
-
-watchEffect(() => localStorage.setItem("theme", themeMode.value));
-watchEffect(() => localStorage.setItem("siderCollapsed", siderCollapsed.value.toString()));
+const isDark = useDark();
+const theme = computed(() => isDark.value ? darkTheme : null);
+const siderCollapsed = useLocalStorage("siderCollapsed", true);
 
 const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
   {
@@ -62,12 +56,7 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
           <!-- Menus -->
           <n-menu mode="horizontal" :options="navMenuOptions"></n-menu>
           <!-- Theme switcher -->
-          <n-switch
-            checked-value="dark"
-            unchecked-value="light"
-            :default-value="themeMode"
-            @update:value="v => themeMode = v"
-          >
+          <n-switch v-model:value="isDark">
             <template #checked>🌙Dark</template>
             <template #unchecked>🌞Light</template>
           </n-switch>
@@ -75,26 +64,16 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
       </n-layout-header>
       <!-- the height of main area equals screen's height minus 70px for header. -->
       <n-layout position="absolute" style="top: 70px; height: calc(100vh - 70px);" has-sider>
-        <n-layout-sider
-          show-trigger="bar"
-          bordered
-          :collapsed-width="0"
-          :default-collapsed="siderCollapsed"
-          :native-scrollbar="false"
-          @update:collapsed="v => siderCollapsed = v"
-          content-style="height: 100%"
-        >
+        <n-layout-sider show-trigger="bar" bordered :collapsed-width="0" :default-collapsed="siderCollapsed"
+          :native-scrollbar="false" @update:collapsed="v => siderCollapsed = v" content-style="height: 100%">
           <n-space vertical justify="center" align="center" style="height: 100%;">
             <sider-profile></sider-profile>
           </n-space>
         </n-layout-sider>
         <!-- I hope main content fill height of reset at least. -->
         <n-layout-content :native-scrollbar="false" content-style="height: 100%">
-          <n-space
-            vertical
-            style="padding: 20px 5vw; min-height: calc(100% - 40px);"
-            item-style="flex: 1; display: flex;"
-          >
+          <n-space vertical style="padding: 20px 5vw; min-height: calc(100% - 40px);"
+            item-style="flex: 1; display: flex;">
             <!-- I hope n-space's unique child fill height. -->
             <!-- And make its child `display: flex` to control alignment in router-view. -->
             <!-- Otherwise, in default align router-view to center of content area. -->

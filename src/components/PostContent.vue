@@ -5,10 +5,12 @@ import 'md-editor-v3/lib/style.css';
 import MDEditor from "md-editor-v3";
 import { useRouter } from 'vue-router';
 import { Post } from '../api/blogs';
+import { useThemeMode } from "../use";
+
+const themeMode = useThemeMode();
 
 defineProps<{
   post: Post,
-  themeMode: "light" | "dark" | undefined
 }>();
 
 const router = useRouter();
