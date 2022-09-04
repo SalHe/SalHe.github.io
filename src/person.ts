@@ -9,10 +9,10 @@ export const profile = {
     school: "Wuhan University",
     email: "SalHe@qq.com",
     programming: {
-        languages: ["C#", "C/C++", "Java", "Kotlin", "Javascript", "Typescript", "Golang", "Python"],
-        platforms: ["Android", "Nodejs", ".NET", "JVM"],
-        frameworks: ["Vue", "Spring+", "Jetpack Compose", "Flutter"],
-        ides: ["Visual Studio Code", "IDEA", "Visual Studio"],
+        languages: ["!C#", "!Golang", "C/C++", "!Java/Kotlin", "Javascript/Typescript", "Python"],
+        platforms: ["!.NET", "!JVM", "Android", "Nodejs"],
+        frameworks: ["!Vue", "Spring+", "Jetpack Compose", "Flutter"],
+        ides: ["!Visual Studio Code", "!IDEA", "Visual Studio"],
         systems: ["Windows", "Linux (Ubuntu)"]
     },
     avatarUrl,

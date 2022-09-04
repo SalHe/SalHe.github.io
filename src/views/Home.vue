@@ -1,36 +1,41 @@
 <script setup lang="ts">
 import { profile } from "../person";
-import { NH1, NH2, NTag, NSpace, NDivider } from 'naive-ui';
+import { NH1, NSpace, NDivider } from 'naive-ui';
 import PersonProfile from "../components/PersonProfile.vue";
-</script>
+import Skills from "../components/Skills.vue";
+import type { Skill, TagType } from "../types";
 
+function capitalizeString(str:string): string {
+  if(str.length <= 1) return str;
+  return str[0].toUpperCase() + str.substring(1); 
+}
+
+function transformSkills(skills:string[]): Skill[]{
+  const map:{[key in string]: TagType} = {
+    "!": "primary"
+  };
+  return skills.map(x => {
+    const leading = x[0];
+    let name = x;
+    let type: TagType | undefined = undefined;
+    if(leading in map){
+      name = name.substring(1);
+      type = map[leading];
+    }
+    return { name, type }
+  });
+}
+</script>
 
 <template>
   <n-space vertical>
     <person-profile></person-profile>
-    <n-divider></n-divider>
+    <n-divider />
     <div>
       <n-h1>Skills</n-h1>
-      <n-h2>Languages</n-h2>
-      <n-space>
-        <n-tag v-for="lang of profile.programming.languages">{{ lang }}</n-tag>
-      </n-space>
-      <n-h2>Platforms</n-h2>
-      <n-space>
-        <n-tag v-for="platform of profile.programming.platforms">{{ platform }}</n-tag>
-      </n-space>
-      <n-h2>Frameworks</n-h2>
-      <n-space>
-        <n-tag v-for="framework of profile.programming.frameworks">{{ framework }}</n-tag>
-      </n-space>
-      <n-h2>IDEs</n-h2>
-      <n-space>
-        <n-tag v-for="ide of profile.programming.ides">{{ ide }}</n-tag>
-      </n-space>
-      <n-h2>Systems</n-h2>
-      <n-space>
-        <n-tag v-for="system of profile.programming.systems">{{ system }}</n-tag>
-      </n-space>
+      <template v-for="skills, skillType in profile.programming">
+        <skills :title="capitalizeString(skillType)" :items="transformSkills(skills)" />
+      </template>
     </div>
   </n-space>
 </template>
