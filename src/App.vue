@@ -1,13 +1,10 @@
 <script setup lang="tsx">
 import { NMenu, NAvatar, NText, NSwitch, NConfigProvider, NSpace, NLayout, NLayoutHeader, NLayoutSider, NLayoutContent, darkTheme, MenuGroupOption, MenuOption } from 'naive-ui';
-import { computed } from '@vue/reactivity';
 import SiderProfile from './components/SiderProfile.vue';
 import { profile } from "./person";
 import { useDark, useLocalStorage } from "@vueuse/core";
-import { watchEffect } from 'vue';
 
 const isDark = useDark();
-const theme = computed(() => isDark.value ? darkTheme : null);
 const siderCollapsed = useLocalStorage("siderCollapsed", true);
 
 const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
@@ -36,7 +33,7 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
 </script>
 
 <template>
-  <n-config-provider :theme="theme">
+  <n-config-provider :theme="isDark ? darkTheme : null">
     <n-layout position="absolute">
       <n-layout-header position="absolute" style="height: 70px; padding: 20px;" bordered>
         <n-space justify="space-between">
