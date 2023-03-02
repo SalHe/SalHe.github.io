@@ -30,7 +30,7 @@ function transformSkills(skills:string[]): Skill[]{
 
 <template>
   <!-- TODO 响应式适配，主要针对打印 -->
-  <n-space vertical>
+  <n-space vertical style=" max-width: 700px;">
     <person-profile></person-profile>
     <n-divider />
     <div>

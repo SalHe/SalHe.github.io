@@ -35,21 +35,9 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
 <template>
   <n-config-provider :theme="isDark ? darkTheme : null">
     <n-layout position="absolute">
+      <!-- 顶部导航栏 -->
       <n-layout-header position="absolute" style="height: 70px; padding: 20px;" bordered>
         <n-space justify="space-between">
-          <!-- Logo -->
-          <!-- <router-link to="/">
-            <n-space
-              justify="center"
-              align="center"
-              style="margin: 0;"
-              item-style="display: flex; align-items: center;"
-              :size="5"
-            >
-              <n-avatar :src="profile.avatarUrl" round :size="20"></n-avatar>
-              <n-text type="info" strong>SalHe's Home</n-text>
-            </n-space>
-          </router-link>-->
           <!-- Menus -->
           <n-menu mode="horizontal" :options="navMenuOptions"></n-menu>
           <!-- Theme switcher -->
@@ -59,18 +47,23 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
           </n-switch>
         </n-space>
       </n-layout-header>
+      
       <!-- the height of main area equals screen's height minus 70px for header. -->
       <n-layout position="absolute" style="top: 70px; height: calc(100vh - 70px);" has-sider>
+
+        <!-- 侧边菜单栏 -->
         <n-layout-sider show-trigger="bar" bordered :collapsed-width="0" :default-collapsed="siderCollapsed"
           :native-scrollbar="false" @update:collapsed="v => siderCollapsed = v" content-style="height: 100%">
           <n-space vertical justify="center" align="center" style="height: 100%;">
             <sider-profile></sider-profile>
           </n-space>
         </n-layout-sider>
+
+        <!-- 主内容区 -->
         <!-- I hope main content fill height of reset at least. -->
         <n-layout-content :native-scrollbar="false" content-style="height: 100%">
           <n-space vertical style="padding: 20px 5vw; min-height: calc(100% - 40px);"
-            item-style="flex: 1; display: flex;">
+            item-style="flex: 1; display: flex; align-self: center;">
             <!-- I hope n-space's unique child fill height. -->
             <!-- And make its child `display: flex` to control alignment in router-view. -->
             <!-- Otherwise, in default align router-view to center of content area. -->
@@ -79,6 +72,7 @@ const navMenuOptions: (MenuOption | MenuGroupOption)[] = [
             </suspense>
           </n-space>
         </n-layout-content>
+
       </n-layout>
     </n-layout>
   </n-config-provider>
