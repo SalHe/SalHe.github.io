@@ -70,6 +70,11 @@ function transformSkills(skills:string[]): Skill[]{
           </project>
         </n-grid-item>
         <n-grid-item :span="2">
+          <project name="Animals12" url="https://github.com/SalHe/animals12" :tags="['Game', 'Chess', 'Vue3']">
+            A mini chess game for fun, in honor of childhood.
+          </project>
+        </n-grid-item>
+        <n-grid-item :span="2">
           <project name="CleverBar" url="https://github.com/SalHe/CleverBar" :tags="['Tool', 'Windows', '.NET']">
             A utility which can quickly toggle Auto Hide Task without opening Taskbar Settings.
           </project>
