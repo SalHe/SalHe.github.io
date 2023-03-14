@@ -6,7 +6,7 @@ export type ProjectKeys = keyof MessageSchema["projects"]["album"];
 export interface Project {
   key: ProjectKeys;
   url: string;
-  type?: "Study";
+  type?: "study";
   tags: string[];
   links?: {
     [key in string]: string;
@@ -22,7 +22,7 @@ export const projects: Project[] = [
   {
     key: "qiaqia-course",
     url: "https://github.com/SE2022-Qiaqia",
-    type: "Study",
+    type: "study",
     tags: ["Gin", "Vue3", "Vite", "Docker", "VuePress"],
     links: {
       "go-backend": "https://github.com/SE2022-Qiaqia/back-end-go",

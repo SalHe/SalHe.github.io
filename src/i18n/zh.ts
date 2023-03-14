@@ -26,6 +26,9 @@ export default {
   },
   projects: {
     $: "作品/项目",
+    types: {
+      study: "学习",
+    },
     album: {
       ebuild: {
         name: "ebuild",

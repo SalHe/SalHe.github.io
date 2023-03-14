@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import { NCard, NA, NTag, NSpace } from "naive-ui";
+import { useMyI18n } from "../i18n";
 import { TagType } from "../types";
 
 defineProps<{
-  name: string,
-  url: string,
-  type?: "Study",
-  tags?: string[]
+  name: string;
+  url: string;
+  type?: "study";
+  tags?: string[];
 }>();
-
-const typeTagMap:{[key in string]: TagType} = {
-  "Study": "info"
+const { t } = useMyI18n();
+const typeTagMap: { [key in string]: TagType } = {
+  study: "info",
 };
 </script>
 
@@ -20,7 +21,7 @@ const typeTagMap:{[key in string]: TagType} = {
       <n-a :href="url" target="blank">{{ name }}</n-a>
     </template>
     <template #header-extra v-if="type">
-      <n-tag :type="typeTagMap[type!]">{{ type }}</n-tag>
+      <n-tag :type="typeTagMap[type!]">{{ t("projects.types." + type) }}</n-tag>
     </template>
     <template #footer v-if="tags">
       <n-space justify="end">
