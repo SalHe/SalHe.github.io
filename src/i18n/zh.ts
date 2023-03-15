@@ -38,7 +38,7 @@ export default {
 
       "qiaqia-course": {
         name: "Qiaqia选课系统",
-        description: `该项目是一个课程设计项目。尽管其出于学习目的，但是仍然使用了现代的开发技术。比如：基于Gin、Go语言的Web API服务，基于Spring的Web API服务实现(由于课程时间问题，暂未完成)、以及基于Vue3/Vuex4/Vite(当时Pinia还处于试验阶段)。您在线可以访问Web UI。另外，还提供Docker Compose一键部署支持。更详细内容可以参见。`,
+        description: `该项目是一个课程设计项目。尽管其出于学习目的，但是仍然使用了现代的开发技术。比如：基于Gin、Go语言的Web API服务，基于Spring的Web API服务实现(由于课程时间问题，暂未完成)、以及基于Vue3/Vuex4/Vite(当时Pinia还处于试验阶段)。您在线可以访问Web UI。另外，还提供Docker Compose一键部署支持。更详细内容可以参见在线文档。`,
         links: {
           "go-backend": "Go后端实现(Gin/Gorm/PostgreSQL/...)",
           "vue3-front-end": "Vue前端实现(Vue3/Vuex/Vite)",
@@ -60,6 +60,11 @@ export default {
       "clever-bar": {
         name: "CleverBar",
         description: "一个Windows平台上快速切换是否自动隐藏任务栏的小工具。",
+      },
+
+      homepage: {
+        name: "个人主页",
+        description: "一款基于Vue3的开源个人主页，同时可作为简历使用。",
       },
     },
   },

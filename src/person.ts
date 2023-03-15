@@ -46,6 +46,11 @@ export const projects: Project[] = [
     url: "https://github.com/SalHe/CleverBar",
     tags: ["Tool", "Windows", ".NET"],
   },
+  {
+    key: "homepage",
+    url: "https://github.com/SalHe/salhe.github.io",
+    tags: ["Homepage", "Resume"],
+  },
 ];
 
 export const profile = {

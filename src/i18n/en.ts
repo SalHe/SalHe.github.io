@@ -63,6 +63,11 @@ export default {
         name: "CleverBar",
         description: "A utility which can quickly toggle Auto Hide Task without opening Taskbar Settings.        ",
       },
+
+      homepage: {
+        name: "Homepage/Resume",
+        description: "One personal homepage based on Vue3, also a resume.",
+      },
     },
   },
 };
